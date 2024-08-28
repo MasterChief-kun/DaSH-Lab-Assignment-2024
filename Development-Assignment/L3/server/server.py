@@ -11,7 +11,7 @@ load_dotenv()
 key = os.getenv("GROQ_API_KEY")
 model = os.getenv("MODEL") or "gemma2-9b-it"
 
-clients = []
+clients = ["client00", "client01", "client02"]
 PORT = int(os.getenv("SERVER_PORT"))
 
 def make_req(prompt):
