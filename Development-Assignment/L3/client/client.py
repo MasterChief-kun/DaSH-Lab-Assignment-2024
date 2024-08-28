@@ -31,7 +31,7 @@ def create_json(data):
 
 def make_req(prompt_arr):
     # prompt = [{ 'prompt': x, 'ClientId': client_id } for x in prompt_arr]
-    res = requests.post("http://127.0.0.1:%s" % SERVER_PORT, data=json.dumps([prompt_arr, client_id]))
+    res = requests.post("http://server:%s" % SERVER_PORT, data=json.dumps([prompt_arr, client_id]))
     create_json(json.loads(res.content))
 
 
