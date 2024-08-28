@@ -7,17 +7,20 @@ services:
         build: ./client
         ports:
             - "7000:7000"
+        restart: unless-stopped
         environment:
             CLIENT_ID: 0
     client01:
         build: ./client
         ports:
             - "7001:7001"
+        restart: unless-stopped
         environment:
             CLIENT_ID: 1
     client02:
         build: ./client
         ports:
             - "7002:7002"
+        restart: unless-stopped
         environment:
             CLIENT_ID: 2
