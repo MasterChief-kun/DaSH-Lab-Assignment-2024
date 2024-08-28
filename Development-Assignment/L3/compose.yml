@@ -1,0 +1,23 @@
+services:
+    server:
+        build: ./server
+        ports:
+            - "6636:6636"
+    client00:
+        build: ./client
+        ports:
+            - "7000:7000"
+        environment:
+            CLIENT_ID: 0
+    client01:
+        build: ./client
+        ports:
+            - "7001:7001"
+        environment:
+            CLIENT_ID: 1
+    client02:
+        build: ./client
+        ports:
+            - "7002:7002"
+        environment:
+            CLIENT_ID: 2
