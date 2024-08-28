@@ -9,7 +9,7 @@ load_dotenv()
 
 key = os.getenv("GROQ_API_KEY")
 model = os.getenv("MODEL") or "gemma2-9b-it"
-client_id = os.getenv("CLIENT_ID")
+client_id = int(os.getenv("CLIENT_ID"))
 SERVER_PORT = os.getenv("SERVER_PORT")
 PORT = int(os.getenv("PORT")) + client_id
 INPUT = os.getenv("INPUT")
