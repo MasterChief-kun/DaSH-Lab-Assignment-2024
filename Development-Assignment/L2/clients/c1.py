@@ -12,7 +12,9 @@ model = os.getenv("MODEL") or "gemma2-9b-it"
 client_id = 0
 SERVER_PORT = os.getenv("SERVER_PORT")
 PORT = int(os.getenv("PORT")) + client_id
-prompt_arr = open('./input.txt', 'r').readlines()[0 + (client_id*4):4 + (client_id*4)]
+INPUT = os.getenv("INPUT")
+
+prompt_arr = open(INPUT, 'r').readlines()[0 + (client_id*4):4 + (client_id*4)]
 # print(prompt_arr)
 
 def create_json(data):

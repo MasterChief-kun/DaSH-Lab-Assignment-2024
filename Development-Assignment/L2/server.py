@@ -43,6 +43,7 @@ def make_req(prompt):
         })
     return res
 
+
 def sendToClients(data):
     i = 0
     for x in clients:
