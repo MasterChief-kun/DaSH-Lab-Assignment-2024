@@ -3,6 +3,9 @@ import requests
 import os
 import json
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 prompt_arr = open(r'./input.txt', 'r').readlines()
 key = os.getenv("GROQ_API_KEY")
@@ -42,7 +45,7 @@ res = [{
     "Source": model
 } for x in reqs]
 
-print(res)
+# print(res)
 
 with open('output.json', 'w') as f:
     json.dump(res, f, ensure_ascii=False, indent=4)
