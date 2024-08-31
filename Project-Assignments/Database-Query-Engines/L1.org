@@ -2,7 +2,9 @@
 #+author: Rohan Jeendgar
 #+email: rohanjeendgar@gmail.com
 
-Accidentally did the [[https://15445.courses.cs.cmu.edu/fall2023/homework1/][2023 Fall]] assignments instead of the [[https://15445.courses.cs.cmu.edu/spring2023/homework1/][2023 Spring]] assignments
+
+* NOTE
+*Accidentally did the [[https://15445.courses.cs.cmu.edu/fall2023/homework1/][_2023 Fall_]] assignments instead of the [[https://15445.courses.cs.cmu.edu/spring2023/homework1/][_2023 Spring_]] assignments.*
 
 * Questions
 ** Q1 - Sample
