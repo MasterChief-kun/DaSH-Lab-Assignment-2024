@@ -1,0 +1,179 @@
+#+title: L1
+#+author: Rohan Jeendgar
+#+email: rohanjeendgar@gmail.com
+
+* Questions
+** Q1 - Sample
+** Q2 - Find all the 12" Vinyl releases of the Beatles in the United Kingdoms up until the year they broke up.
+*** Query
+#+name: Q2-query
+#+begin_src sql
+SELECT
+    distinct(r.name) AS album_name,
+    ri.date_year AS release_year
+FROM
+    release r
+JOIN
+    artist_credit ac ON r.artist_credit = ac.id
+JOIN
+    artist a ON ac.id = a.id
+JOIN
+    medium m ON r.id = m.release
+JOIN
+    medium_format mf ON m.format = mf.id
+JOIN
+    release_info ri ON r.id = ri.release
+JOIN
+    area ar ON ri.area = ar.id
+WHERE
+    a.name = 'The Beatles'
+    AND mf.name = '12" Vinyl'
+    AND ar.name = 'United Kingdom'
+    AND ri.date_year <= 1970
+ORDER BY
+    ri.date_year ASC;
+
+#+end_src
+   
+*** Output
+        [[./images/Q2.png]]
+
+** Q3 - Find the ten newest release that has the medium format Cassette.
+*** Query
+ #+name: Q3-query
+ #+begin_src sql
+SELECT
+    r.name AS release_name,
+    ac.name AS artist_name,
+    ri.date_year AS release_year
+FROM
+    release r
+JOIN
+    artist_credit ac ON r.artist_credit = ac.id
+JOIN
+    release_info ri ON r.id = ri.release
+JOIN
+    medium me ON r.id = me.release
+JOIN
+    medium_format mf ON me.format = mf.id
+WHERE
+    mf.name LIKE 'Cassette'
+ORDER BY
+    ri.date_year DESC,
+    ri.date_month DESC,
+    ri.date_day DESC,
+    r.name ASC,
+    ac.name ASC
+LIMIT 10;
+
+ #+end_src
+
+*** Output
+        [[./images/Q3.png]]
+
+** Q4 - Find works with the longest comment for each work type.
+*** Query
+#+name: Q4-query
+#+begin_src sql
+ SELECT
+    distinct(wt.name) AS WORK_TYPE,
+    w.name AS WORK_NAME,
+    LENGTH(w.comment) AS COMMENT_LENGTH,
+    w.comment as 'COMMENT'
+FROM
+    work w
+JOIN
+    work_type wt ON w.type = wt.id
+JOIN
+    (
+        SELECT
+            type,
+            MAX(LENGTH(comment)) AS max_comment_length
+        FROM
+            work
+        WHERE
+            LENGTH(comment) > 0
+        GROUP BY
+            type
+    ) max_comments ON w.type = max_comments.type
+                  AND LENGTH(w.comment) = max_comments.max_comment_length
+ORDER BY
+    wt.name ASC,
+    w.name ASC;
+#+end_src
+*** Output
+        [[./images/Q4.png]]
+
+** Q5 - Find the artist with top releases for each month.
+*** Query
+#+name: Q5-query
+#+begin_src sql
+ SELECT
+    a.name AS artist_name,
+    ri.date_month,
+    COUNT(r.id) AS release_count
+FROM
+    artist a
+JOIN
+    artist_credit ac ON a.id = ac.id
+JOIN
+    release r ON ac.id = r.artist_credit
+JOIN
+    release_info ri ON r.id = ri.release
+WHERE
+    a.name LIKE 'Elvis%'
+    AND a.type = (SELECT id FROM artist_type WHERE name = 'Person')
+    AND ri.date_month IS NOT NULL
+GROUP BY
+    a.id, a.name, ri.date_month
+ORDER BY
+    release_count DESC,
+    a.name ASC,
+    ri.date_month ASC;
+#+end_src
+*** Output
+[[./images/Q5.png]]
+
+** Q6 - List the number of groups that were formed in the United States in each decades from 1900 to 2023.
+*** Query
+#+name: Q6-query
+#+begin_src sql
+ SELECT
+    CONCAT((begin_date_year / 10) * 10, 's') AS decade,
+    COUNT(*) AS group_count
+FROM
+    artist a
+JOIN
+    area ar ON a.area = ar.id
+WHERE
+    ar.name = 'United States'
+    AND a.type = (SELECT id FROM artist_type WHERE name = 'Group')
+    AND begin_date_year BETWEEN 1900 AND 2023
+GROUP BY
+    (begin_date_year / 10) * 10
+ORDER BY
+    (begin_date_year / 10) * 10 ASC;
+#+end_src
+
+*** Output
+[[./images/Q6.png]]
+
+** Q7 - List all the artists who have collaborated with Pittsburgh Symphony Orchestra.
+*** Query
+#+name: Q7-query
+#+begin_src sql
+SELECT DISTINCT a.name
+FROM artist_credit_name acn
+JOIN artist a ON acn.artist = a.id
+WHERE acn.artist_credit IN (
+    SELECT ac.id
+    FROM artist_credit ac
+    JOIN artist_credit_name acn2 ON ac.id = acn2.artist_credit
+    JOIN artist a2 ON acn2.artist = a2.id
+    WHERE a2.name = 'Pittsburgh Symphony Orchestra'
+)
+AND a.name != 'Pittsburgh Symphony Orchestra'
+ORDER BY a.name ASC;
+#+end_src
+*** Output
+[[./images/Q7.png]]
