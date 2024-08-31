@@ -1,4 +1,4 @@
-% Created 2024-08-31 Sat 13:55
+% Created 2024-08-31 Sat 15:54
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -27,14 +27,15 @@
 \maketitle
 \tableofcontents
 
+Accidentally did the \href{https://15445.courses.cs.cmu.edu/fall2023/homework1/}{2023 Fall} assignments instead of the \href{https://15445.courses.cs.cmu.edu/spring2023/homework1/}{2023 Spring} assignments
 \section{Questions}
-\label{sec:org73bb228}
+\label{sec:org77b212d}
 \subsection{Q1 - Sample}
-\label{sec:orgb26f742}
+\label{sec:org28f8250}
 \subsection{Q2 - Find all the 12" Vinyl releases of the Beatles in the United Kingdoms up until the year they broke up.}
-\label{sec:orgc401736}
+\label{sec:orgc064968}
 \subsubsection{Query}
-\label{sec:orgabeb225}
+\label{sec:org17f4b11}
 \begin{verbatim}
 SELECT
     distinct(r.name) AS album_name,
@@ -63,14 +64,14 @@ ORDER BY
 
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:orgeb330e0}
+\label{sec:org39a21d0}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q2.png}
 \end{center}
 \subsection{Q3 - Find the ten newest release that has the medium format Cassette.}
-\label{sec:orgc443dda}
+\label{sec:org28c31b5}
 \subsubsection{Query}
-\label{sec:org83974b6}
+\label{sec:orgd5aee05}
 \begin{verbatim}
 SELECT
     r.name AS release_name,
@@ -98,14 +99,14 @@ LIMIT 10;
 
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:orga536439}
+\label{sec:orgb2bbda5}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q3.png}
 \end{center}
 \subsection{Q4 - Find works with the longest comment for each work type.}
-\label{sec:org49b3a9b}
+\label{sec:orgd0f5606}
 \subsubsection{Query}
-\label{sec:orgceb0db2}
+\label{sec:org85b7e4d}
 \begin{verbatim}
  SELECT
     distinct(wt.name) AS WORK_TYPE,
@@ -134,14 +135,14 @@ ORDER BY
     w.name ASC;
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:orged4ffdd}
+\label{sec:org311cecc}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q4.png}
 \end{center}
 \subsection{Q5 - Find the artist with top releases for each month.}
-\label{sec:orgd42319f}
+\label{sec:org874fa3d}
 \subsubsection{Query}
-\label{sec:org4acb040}
+\label{sec:org431c081}
 \begin{verbatim}
  SELECT
     a.name AS artist_name,
@@ -167,14 +168,14 @@ ORDER BY
     ri.date_month ASC;
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:orgd3ea563}
+\label{sec:orgec30ceb}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q5.png}
 \end{center}
 \subsection{Q6 - List the number of groups that were formed in the United States in each decades from 1900 to 2023.}
-\label{sec:orgb62de75}
+\label{sec:org42b25e2}
 \subsubsection{Query}
-\label{sec:org9bc3efa}
+\label{sec:orga0217e8}
 \begin{verbatim}
  SELECT
     CONCAT((begin_date_year / 10) * 10, 's') AS decade,
@@ -193,14 +194,14 @@ ORDER BY
     (begin_date_year / 10) * 10 ASC;
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:org2c404ba}
+\label{sec:org5b792c3}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q6.png}
 \end{center}
 \subsection{Q7 - List all the artists who have collaborated with Pittsburgh Symphony Orchestra.}
-\label{sec:orgf873dfc}
+\label{sec:org5f33714}
 \subsubsection{Query}
-\label{sec:orge774e28}
+\label{sec:org938449e}
 \begin{verbatim}
 SELECT DISTINCT a.name
 FROM artist_credit_name acn
@@ -216,7 +217,7 @@ AND a.name != 'Pittsburgh Symphony Orchestra'
 ORDER BY a.name ASC;
 \end{verbatim}
 \subsubsection{Output}
-\label{sec:org51481f2}
+\label{sec:org7ddbf7a}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/Q7.png}
 \end{center}

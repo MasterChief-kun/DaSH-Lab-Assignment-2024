@@ -2,6 +2,8 @@
 #+author: Rohan Jeendgar
 #+email: rohanjeendgar@gmail.com
 
+Accidentally did the [[https://15445.courses.cs.cmu.edu/fall2023/homework1/][2023 Fall]] assignments instead of the [[https://15445.courses.cs.cmu.edu/spring2023/homework1/][2023 Spring]] assignments
+
 * Questions
 ** Q1 - Sample
 ** Q2 - Find all the 12" Vinyl releases of the Beatles in the United Kingdoms up until the year they broke up.

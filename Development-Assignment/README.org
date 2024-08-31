@@ -1,0 +1,22 @@
+#+title: Readme
+
+* NOTE
+1. Please refer to the ~.env~ files in the ~L1~, ~L2~, ~L3/client~ and ~L3/server~ folders for the environment variables that need to be provided.er
+
+2. Decided to use requests to make the API calls instead of the *groq* library that's available for Python, as I felt that using the library wouldn't be representative of the average API usage experience.
+
+* L1
+Pretty basic overall, overview of it's functioning:
+1. Reads input from the provided ~inputs.txt~ file.
+2. Sends individual requests using the groq API and stores the responses, while recording time.
+3. Dumps the received data in the provided format to ~output.json~.
+
+* L2
+A little tricky(?). Initially, I thought of using sockets with multi-threading, but, didn't continue with it as I was having problems with clients receiving the responses afterward. In the end, went with a basic HTTP server running on the server and the clients. The clients are provided a client ID.
+
+The clients on startup divide the provided ~inputs.txt~ (4 prompts/client) into prompts that they then, send to the *server*. Instead of the server having a pre-defined list of all clients (to be able to accomodate more clients with minimal change to the code), I chose to have the server store *clients* that have sent requests.
+
+The server, then broadcasts the received response to the *clients*, from where the clients handle formatting the data and dumping it to their respective files ~output-<client_id>.json~.
+
+* L3
+Not very difficult, just handle restarting the clients as they (the clients and the server) sometimes started out of order.
