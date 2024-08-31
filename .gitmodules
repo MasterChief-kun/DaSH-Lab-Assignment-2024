@@ -1,0 +1,6 @@
+[submodule "Project-Assignments/Parallel-File-Systems/Darshan/spack"]
+	path = Project-Assignments/Parallel-File-Systems/Darshan/spack
+	url = https://github.com/spack/spack.git
+[submodule "Project-Assignments/Parallel-File-Systems/dlio_benchmark"]
+	path = Project-Assignments/Parallel-File-Systems/dlio_benchmark
+	url = https://github.com/argonne-lcf/dlio_benchmark
